@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Генератор промптов для учителя</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #e8f0fe;
+    }
+    h1 {
+      color: #1a237e;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #0d47a1;
+    }
+    input, select, button {
+      margin-top: 5px;
+      padding: 8px;
+      width: 100%;
+      border: 1px solid #90caf9;
+      border-radius: 4px;
+      background-color: #ffffff;
+    }
+    button {
+      background-color: #1976d2;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1565c0;
+    }
+    #output {
+      margin-top: 20px;
+      background: #ffffff;
+      border-left: 4px solid #1976d2;
+      padding: 15px;
+      color: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎓 Генератор промптов для начала урока</h1>
+
+  <label>Предмет:</label>
+  <select id="subject">
+    <option>Алгебра и основы анализа</option>
+    <option>Геометрия</option>
+    <option>Информатика</option>
+    <option>Русский язык (обучение на русском языке)</option>
+    <option>Русская литература (обучение на русском языке)</option>
+    <option>Казахский язык и литература (обучение на русском языке)</option>
+    <option>Казахский язык (обучение на казахском языке)</option>
+    <option>Казахская литература (обучение на казахском языке)</option>
+    <option>Русский язык и литература (обучение на казахском языке)</option>
+    <option>Иностранный язык</option>
+    <option>История Казахстана</option>
+    <option>Физкультура</option>
+    <option>Начальная военная и технологическая подготовка</option>
+    <option>Мировая история</option>
+    <option>Основы права</option>
+    <option>География</option>
+    <option>Химия</option>
+    <option>Биология</option>
+    <option>Физика</option>
+  </select>
+
+  <label>Класс:</label>
+  <select id="grade">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+    <option>11</option>
+  </select>
+
+  <label>Тема урока:</label>
+  <input type="text" id="topic" placeholder="Например: Законы Ньютона">
+
+  <label>Цель начала урока:</label>
+  <input type="text" id="goal" placeholder="Например: вызвать интерес, задать вопрос">
+
+  <label>Формат хука:</label>
+  <select id="format">
+    <option>Аудио</option>
+    <option>Видео</option>
+    <option>Изображение</option>
+    <option>Текст</option>
+    <option>Мем</option>
+    <option>Сценка</option>
+  </select>
+
+  <button onclick="generatePrompt()">Сгенерировать промпт</button>
+
+  <div id="output"></div>
+
+  <script>
+    function generatePrompt() {
+      const subject = document.getElementById('subject').value;
+      const grade = document.getElementById('grade').value;
+      const topic = document.getElementById('topic').value;
+      const goal = document.getElementById('goal').value;
+      const format = document.getElementById('format').value;
+
+      const prompt = `Ты — методист и сценарист. Твоя задача — создать техническое задание на вовлекающий хук для начала урока.\n\nТема урока: ${topic}\nПредмет: ${subject}\nВозраст учеников: ${grade} класс\n\nЦель начала урока: ${goal}\n\nФормат нужного хука: ${format}\n\nСделай следующее:\n\n— Придумай сценарий или описание будущего хука\n— Определи, что должен почувствовать/сказать ученик после\n— Пропиши, как учитель связывает это с темой\n— (Если нужно) — укажи, какой генератор использовать: ChatGPT, DALL·E, ElevenLabs, PikaLabs и т.д.`;
+
+      document.getElementById('output').innerHTML = `<strong>Готовый промпт:</strong><br><pre>${prompt}</pre>`;
+    }
+  </script>
+</body>
+</html>
